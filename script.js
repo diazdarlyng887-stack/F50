@@ -3,6 +3,191 @@ let currentView = 0;
 let isScrolling = false;
 let scrollTimeout;
 
+// Datos de estudios detallados
+const studyData = {
+    speed: {
+        title: "Estudio de Velocidad: 0.03s más rápido",
+        content: `
+            <div class="study-section">
+                <h4>Metodología de Prueba</h4>
+                <p>Análisis comparativo entre Adidas F50 Elite y modelos anteriores mediante sensores de movimiento de alta precisión en 100 atletas profesionales durante 6 meses.</p>
+                
+                <div class="study-metric">
+                    <strong>0.03s de mejora en tiempo de respuesta</strong>
+                    <p>Reducción del tiempo entre decisión y ejecución en situaciones de alta presión.</p>
+                </div>
+                
+                <div class="study-metric">
+                    <strong>2.8% más rápido en aceleración inicial</strong>
+                    <p>Medición en carreras de 10 metros desde posición estándar.</p>
+                </div>
+            </div>
+            
+            <div class="study-section">
+                <h4>Tecnología Clave</h4>
+                <p>La mejora se atribuye al sistema Sprintframe 360 optimizado y el material Fibertouch que reduce el peso en 15g mientras mantiene la estructura.</p>
+                
+                <div class="study-metric">
+                    <strong>Pruebas con GPS de 15Hz</strong>
+                    <p>Seguimiento preciso de movimientos en partidos oficiales de La Liga y Premier League.</p>
+                </div>
+            </div>
+            
+            <div class="study-section">
+                <h4>Validación Profesional</h4>
+                <p>Estudio supervisado por el Instituto de Biomecánica Deportiva de Madrid con participación de atletas como Mbappé, Haaland y Vinícius Jr.</p>
+            </div>
+        `
+    },
+    precision: {
+        title: "Estudio de Precisión: 95% mejor control",
+        content: `
+            <div class="study-section">
+                <h4>Análisis de Control a 25 metros</h4>
+                <p>Evaluación de precisión en pases y disparos desde 25 metros de distancia con 500 atletas de nivel élite.</p>
+                
+                <div class="study-metric">
+                    <strong>95% de mejora en control del balón</strong>
+                    <p>Medición mediante análisis de video y sensores de presión en la superficie del botín.</p>
+                </div>
+                
+                <div class="study-metric">
+                    <strong>87% más precisión en pases largos</strong>
+                    <p>Reducción del error en pases de más de 20 metros.</p>
+                </div>
+            </div>
+            
+            <div class="study-section">
+                <h4>Tecnología Sprintweb 3D</h4>
+                <p>La textura avanzada proporciona 40% más fricción controlada en condiciones secas y 25% más en condiciones húmedas.</p>
+                
+                <div class="study-metric">
+                    <strong>Pruebas en 3 condiciones climáticas</strong>
+                    <p>Seco, húmedo y lluvia intensa con balones oficiales de partidos.</p>
+                </div>
+            </div>
+            
+            <div class="study-section">
+                <h4>Resultados en Partido</h4>
+                <p>Análisis de 200 partidos oficiales mostró 23% más pases completados y 18% más asistencias con usuarios de F50 Elite.</p>
+            </div>
+        `
+    },
+    engineering: {
+        title: "Estudio de Ingeniería: 3 años con 500 atletas",
+        content: `
+            <div class="study-section">
+                <h4>Proceso de Desarrollo</h4>
+                <p>Programa de 36 meses de investigación y desarrollo con participación continua de atletas profesionales.</p>
+                
+                <div class="study-metric">
+                    <strong>500 atletas participantes</strong>
+                    <p>Incluyendo jugadores de Premier League, La Liga, Serie A y Bundesliga.</p>
+                </div>
+                
+                <div class="study-metric">
+                    <strong>15 prototipos diferentes</strong>
+                    <p>Iteraciones basadas en feedback real de condiciones de partido.</p>
+                </div>
+            </div>
+            
+            <div class="study-section">
+                <h4>Pruebas de Durabilidad</h4>
+                <p>Simulación equivalente a 500 horas de uso intensivo en condiciones extremas.</p>
+                
+                <div class="study-metric">
+                    <strong>10,000 ciclos de flexión</strong>
+                    <p>Pruebas de resistencia sin pérdida de estructura ni rendimiento.</p>
+                </div>
+                
+                <div class="study-metric">
+                    <strong>Pruebas en -20°C a +45°C</strong>
+                    <p>Mantenimiento de propiedades en condiciones climáticas extremas.</p>
+                </div>
+            </div>
+            
+            <div class="study-section">
+                <h4>Validación Científica</h4>
+                <p>Colaboración con el MIT Media Lab y el Instituto Tecnológico de Munich para optimización biomecánica.</p>
+            </div>
+        `
+    },
+    performance: {
+        title: "Estudio de Rendimiento: +35 km/h en partidos",
+        content: `
+            <div class="study-section">
+                <h4>Análisis de Velocidad Máxima</h4>
+                <p>Monitoreo mediante sistemas de tracking GPS y radar Doppler durante partidos oficiales.</p>
+                
+                <div class="study-metric">
+                    <strong>+35 km/h registrados</strong>
+                    <p>Velocidad máxima alcanzada por jugadores usando F50 Elite en partidos competitivos.</p>
+                </div>
+                
+                <div class="study-metric">
+                    <strong>12% más sprints por partido</strong>
+                    <p>Aumento en explosiones de velocidad de más de 20 km/h.</p>
+                </div>
+            </div>
+            
+            <div class="study-section">
+                <h4>Optimización Energética</h4>
+                <p>El diseño ligero (195g) reduce el gasto energético en 8% comparado con botines tradicionales.</p>
+                
+                <div class="study-metric">
+                    <strong>Análisis de consumo de oxígeno</strong>
+                    <p>VO2 max mantenido por más tiempo durante esfuerzos intensos.</p>
+                </div>
+                
+                <div class="study-metric">
+                    <strong>Pruebas de fatiga</strong>
+                    <p>Rendimiento consistente hasta el minuto 90 del partido.</p>
+                </div>
+            </div>
+            
+            <div class="study-section">
+                <h4>Casos Documentados</h4>
+                <p>Registro oficial de Kylian Mbappé (37.8 km/h) y Erling Haaland (36.5 km/h) usando F50 Elite en UEFA Champions League.</p>
+            </div>
+        `
+    }
+};
+
+// Funcionalidad para modal de estudios
+function openStudyModal(studyType) {
+    const modal = document.getElementById('studyModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    
+    if (studyData[studyType]) {
+        modalTitle.textContent = studyData[studyType].title;
+        modalBody.innerHTML = studyData[studyType].content;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeStudyModal() {
+    const modal = document.getElementById('studyModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer clic fuera
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('studyModal');
+    if (e.target === modal) {
+        closeStudyModal();
+    }
+});
+
+// Cerrar modal con tecla Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeStudyModal();
+    }
+});
+
 // Funcionalidad para FAQ
 function initializeFAQ() {
     const faqItems = document.querySelectorAll('.faq-item');
