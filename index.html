@@ -195,39 +195,56 @@
             
             <div class="gallery-grid">
                 <div class="gallery-item" data-index="1">
-                    <div class="gallery-placeholder">
+                    <div class="gallery-placeholder" onclick="openStudyModal('speed')">
                         <div class="gallery-icon">VELOCIDAD</div>
                         <div class="gallery-fact">0.03s más rápido en respuesta</div>
+                        <div class="study-link" onclick="openStudyModal('speed')">Ver estudio completo →</div>
                     </div>
                 </div>
                 <div class="gallery-item" data-index="2">
-                    <div class="gallery-placeholder">
+                    <div class="gallery-placeholder" onclick="openStudyModal('precision')">
                         <div class="gallery-icon">PRECISIÓN</div>
                         <div class="gallery-fact">95% mejor control a 25m</div>
+                        <div class="study-link" onclick="openStudyModal('precision')">Ver estudio completo →</div>
                     </div>
                 </div>
                 <div class="gallery-item" data-index="3">
-                    <div class="gallery-placeholder">
+                    <div class="gallery-placeholder" onclick="openStudyModal('engineering')">
                         <div class="gallery-icon">INGENIERÍA</div>
                         <div class="gallery-fact">3 años con 500 atletas</div>
+                        <div class="study-link" onclick="openStudyModal('engineering')">Ver estudio completo →</div>
                     </div>
                 </div>
                 <div class="gallery-item" data-index="4">
-                    <div class="gallery-placeholder">
+                    <div class="gallery-placeholder" onclick="openStudyModal('performance')">
                         <div class="gallery-icon">RENDIMIENTO</div>
                         <div class="gallery-fact">Usado a +35 km/h en partidos</div>
+                        <div class="study-link" onclick="openStudyModal('performance')">Ver estudio completo →</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- MODAL DE ESTUDIOS -->
+    <div class="study-modal" id="studyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Estudio Detallado</h3>
+                <button class="modal-close" onclick="closeStudyModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+
     <!-- SECCIÓN 8 - CALL TO ACTION -->
     <section class="cta">
         <div class="container">
             <div class="cta-content">
                 <h2 class="cta-title">Desata tu velocidad.</h2>
-                <button class="cta-button">
+                <button class="cta-button" onclick="window.open('https://www.adidas.com/us/f50-messi-elite-firm-ground-soccer-cleats/JQ0927.html', '_blank')">
                     <span>Comprar Adidas F50 Elite</span>
                     <div class="button-glow"></div>
                 </button>
